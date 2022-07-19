@@ -16,7 +16,7 @@ let seattle = {
   minCustomer: 23,
   maxCustomer: 65,
   avgCookieBought: 6.3,
-  randomCustPerHour: [],
+  // randomCustPerHour: [],
   hours: ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', 'total'],
   CookiesPerHour: [],
 
@@ -27,14 +27,27 @@ let seattle = {
     return Math.floor(Math.random() * (this.maxCustomer - this.minCustomer +1) + this.minCustomer);
   },
 
-  calcCookiesPerHour: function(){
-    this.randomCustPerHour();
+  getCustPerHour: function(){
+    this.custPerHour = randomCustPerHour(this.minCustomer, this.maxCustomer); // store a random # 23-65
+    console.log(this.custPerHour);
+  },
+
+
+  getCookiesPerHour: function(){
+    this.total = 0;
+    // this.randomCustPerHour();
     for (let i = 0; i < hours.length; i++){
-      let simCookiePerHour = this.avgCookieBought * this.randomCustPerHour[i];
-      this.CookiesPerHour.push(simCookiePerHour);
+      this.getCustPerHour(); // this.custPerHour: 25
+      let cookiePerHour = (Math.round(this.custPerHour * this.avgCookieBought));
+      this.cookieSoldPerHour.push(cookiePerHour);
+      this.total += cookiePerHour;
+
+        
+      //   this.avgCookieBought * this.randomCustPerHour[i];
+      // this.CookiesPerHour.push(simCookiePerHour);
     }
   },
-  
+   
   render: function(){
     let articleElem = document.createElement('article');
     cookieSection.appendChild(articleElem);
