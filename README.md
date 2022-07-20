@@ -6,9 +6,18 @@
 
 ### Links and Resources
 
+
 Resourced Class 7 Zoom meeting/'Stephen' example for first Object Literal "Seattle." Worked out the other Objects for practice repitition.
 
 Grabbed from MDN docs: function randomavg(min,max){ return Math.floor(Math.random() * (max - min + 1) + min); }
+
+Resourced Class 7 Zoom meeting/'Stephen' example for first Object Literal "Seattle." Worked out the other Objects for practice repitition. 
+
+Grabbed from MDN docs:
+ function randomavg(min,max){
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
 
 ### Reflections
 
