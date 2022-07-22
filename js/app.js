@@ -48,7 +48,7 @@ function cityTable(){
   storeTable.appendChild(storeCaption);
   storeCaption.textContent = 'Cookie Sales';
 
-  let hoursText = ['', '6am','7am', '8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','Daily Location Total'];
+  let hoursText = ['', '6am','7am', '8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','Total'];
   let theadElem = document.createElement('thead');
   storeTable.appendChild(theadElem);
 
@@ -65,13 +65,25 @@ function cityTable(){
   let tfootElem = document.createElement('tfoot');
   storeTable.appendChild(tfootElem);
 
-
-
 }
+
 cityTable();
 
 
-// City.prototype.render = function(){
+City.prototype.buildSalesRow = function(){
+
+
+
+
+// this adds a row to the table
+// make a tr for the city
+// make a td for the citys name and set the text content to be that citys name, and append it to that row
+// make a loop that goes over the size of the citys data, custPerhour
+// in loop, create a td, set the text content to the td to the custPerHour at position [i]
+// appdend the td to the tr for the city
+// after the loop is finished, append the tr to the table
+
+}
 
   // let divElem = document.createElement('store');
   // storeDiv.appendChild(divElem);
@@ -118,7 +130,7 @@ function renderCitys(){
   }
 }
 
-// renderCitys();
+renderCitys();
 
 // seattle.getCustPerHour();
 // seattle.render();
