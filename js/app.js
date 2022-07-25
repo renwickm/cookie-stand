@@ -1,14 +1,86 @@
 'use strict';
 
-let storeTable = document.getElementById('store');
+let storeForm = document.getElementById('add-store-form');
 
-// function randomCustPerHour(min, max){
-//   return Math.floor(Math.random() * (max - min +1) + min);
-// }
+function handleSubmitStore(event) {
+  event.preventDefault();
+  
+  let name = event.target.formStoreName.value;
+  let minimum = +event.target.minimum.value;
+  let maximum = +event.target.maximum.value;
+  let avgerage = +event.target.average.value;
+  
+  let newStore = new Store(name, minimum, maximum, avgerage);
+  
+  newStore.renderStore();
+  renderFooter(true);
+  addStoreForm.reset();
+}
+
+function loadPage() {
+  let seattle = new City('Seattle', 23, 65, 6.3);
+  let tokyo = new City('Tokyo', 3, 24, 1.2);
+  let dubai = new City('Dubai', 11, 38, 3.7);
+  let paris = new City('Paris', 20, 38, 2.3);
+  let lima = new City('Lima', 2, 16, 4.6);
+}
+
+function renderCitys(){
+  for(let i = 0; i < city.length; i++){
+    let currentCity = city[i];
+    currentCity.getCustPerHour();
+    currentCity.render();
+  }
+  
+  cityTable();
+  renderCitys();
+  renderFooter(false);
+}
+
+function cityTable(){
+  let storeTable = document.getElementById('store');
+  let storeCaption = document.createElement('caption');
+  storeTable.appendChild(storeCaption);
+  storeCaption.textContent = 'Store Sales Table';
+  
+  
+  let hoursText = ['', '6am','7am', '8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','Total'];
+  
+  let theadElem = document.createElement('thead');
+  storeTable.appendChild(theadElem);
+  
+  let trElem = document.createElement('tr');
+  theadElem.appendChild(trElem);
+  
+  for(let i = 0; i < hoursText.length; i++){
+    let thElem = document.createElement('th');
+    trElem.appendChild(thElem);
+    thElem.textContent = hoursText[i];
+    
+    if (i !== 0 && i < 7){
+      theadElem.textContent = `${i + 5}am:`;
+    } else if (i ===7) {
+      theadElem.textContent = `${i + 5}pm:`;
+    }
+    else if (i > 7 && i < tableCells) {
+      theadElem.textContent = `${i -7}pm:`;
+    } else if (i ===tableCells) {
+      theadElem.textContent = 'Location Total';
+    }
+  }
+  
+  let tbodyElem = document.createElement('tbody');
+  storeTable.appendChild(tbodyElem);
+  tbodyElem.setAttribute('id', 'table-body');
+  
+  let tfootElem = document.createElement('tfoot');
+  storeTable.appendChild(tfootElem);
+  tfootElem.setAttribute('id', 'table-footer');
+}
+
 
 
 let hours = 13;
-
 let city = [];
 
 function City(name, minCust, maxCust, avgCookieSale){
@@ -17,9 +89,9 @@ function City(name, minCust, maxCust, avgCookieSale){
   this.maxCust = maxCust;
   this.avgCookieSale = avgCookieSale
   this.custPerHour = [];
-
+  
   this.total = 0;
-
+  
   this.getCustPerHour(this);
   city.push(this);
 }
@@ -32,79 +104,14 @@ City.prototype.getCustPerHour = function(store){
   }
   store.custPerHour = tempArray;
 }
-// fake.getCustPerHour();
+
+
+
 
 City.prototype.getCookiesSoldPerHour = function(){
   this.getCookiesSoldPerHour;
 }
-
-let fake = new City('port', 23, 34, 3.5);
-console.log(fake);
-
-
-function cityTable(){
-  let storeTable = document.getElementById('store');
-  let storeCaption = document.createElement('caption');
-  storeTable.appendChild(storeCaption);
-  storeCaption.textContent = 'Cookie Sales';
-
-  let hoursText = ['', '6am','7am', '8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','Total'];
-  let theadElem = document.createElement('thead');
-  storeTable.appendChild(theadElem);
-
-  let trElem = document.createElement('tr');
-  theadElem.appendChild(trElem);
-  for(let i = 0; i < hoursText.length; i++){
-    let thElem = document.createElement('th');
-    trElem.appendChild(thElem);
-    thElem.textContent = hoursText[i];
-  }
-
-  let tbodyElem = document.createElement('tbody');
-  storeTable.appendChild(tbodyElem);
-  let tfootElem = document.createElement('tfoot');
-  storeTable.appendChild(tfootElem);
-
-}
-
-cityTable();
-
-
-// City.prototype.buildSalesRow = function(){
-
-function generate_table() {
-  // creates a <table> element and a <tbody> element
-  const tbl = document.createElement("table");
-  const tblBody = document.createElement("tbody");
-   
-    // creating all cells
-    for (let i = 0; i < 2; i++) {
-    // creates a table row
-    const row = document.createElement("tr");
-   
-    for (let j = 0; j < 2; j++) {
-      // Create a <td> element and a text node, make the text
-      // node the contents of the <td>, and put the <td> at
-      // the end of the table row
-    const cell = document.createElement("td");
-    const cellText = document.createTextNode(`cell in row ${i}, column ${j}`);
-      cell.appendChild(cellText);
-      row.appendChild(cell);
-    }
-   
-    // add the row to the end of the table body
-    tblBody.appendChild(row);
-  }
-   
-  // put the <tbody> in the <table>
-  tbl.appendChild(tblBody);
-  // appends <table> into <body>
-  document.body.appendChild(tbl);
-  // sets the border attribute of tbl to '2'
-  tbl.setAttribute("border", "2");
-}
-generate_table();  
-
+// City.prototype.buildSalesRow = function()
 
 // this adds a row to the table
 // make a tr for the city
@@ -146,22 +153,6 @@ generate_table();
 
 
 
-let seattle = new City('Seattle', 23, 65, 6.3);
-let tokyo = new City('Tokyo', 3, 24, 1.2);
-let dubai = new City('Dubai', 11, 38, 3.7);
-let paris = new City('Paris', 20, 38, 2.3);
-let lima = new City('Lima', 2, 16, 4.6);
-console.log(city);
-
-function renderCitys(){
-  for(let i = 0; i < city.length; i++){
-    let currentCity = city[i];
-    currentCity.getCustPerHour();
-    currentCity.render();
-  }
-}
-
-renderCitys();
 
 // seattle.getCustPerHour();
 // seattle.render();
