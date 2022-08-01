@@ -3,11 +3,64 @@
   <head>
     <meta charset="UTF-8">
     <meta name="Viewport" content="width=device-width, inital-scale=1.0">
+  <title>Sales</title>
+  <style>
+
+    h1 {
+      display: flex;
+      justify-content: center;
+      font-size: 40px;
+      border: 2px solid;
+      padding: 10px;
+    }
+
+    h2 {
+      display: flex;
+      justify-content: center;
+    }
+
+    fieldset {
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+      margin: 20px;
+      padding: 20px;
+    }
+
+    label {
+      margin: 10px;
+      font-size: 20px;
+    }
+
+
+
+    legend {
+      font-size: 30px;
+      color: maroon;
+      margin: 20px;
+    }
+
+    button {
+      margin: 20px;
+      font-size: 20px;
+    }
+
+    footer {
+      text-align: center;
+      margin: 20px;
+      bottom: 0px;
+      background: radial-gradient(black, transparent);
+      color: ghostwhite;
+    }
+
+
+
+  </style>
   </head>
 <body>
   <header>
     <h1>Submit a Form</h1>
-    <h2><a href="index.html">Homepage</h2>
+    <h2><a href="index.html">Homepage</a></h2>
     
   </header>
   <main>
@@ -15,7 +68,7 @@
       <fieldset>
         <legend>Store</legend>
         
-        <label for="cityName">Name:</label>
+        <label for="cityName">Name</label>
         <input id="cityName" type="text" name="cityName" placeholder="Portland">
         
         <label for="minCust">Min Customer Sales</label>
